@@ -1,0 +1,169 @@
+﻿<Page
+    x:Class="BowlingScorer.People"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BowlingScorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:PlayerToAverageConverter x:Key="PlayerToAverageConverter" />
+        <local:ScoreToStringConverter x:Key="ScoreToStringConverter" />
+        <local:DateTimeToMonthDayConverter x:Key="DateTimeToMonthDayConverter" />
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Bowlers" Style="{StaticResource PageHeaderTextStyle}" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="70"/>
+            <UI:AdControl x:Name="AdBox" Grid.Column="1" HorizontalAlignment="Center" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" Margin="200,0,0,0" />
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Background="#333333" Grid.Column="1" Margin="0,0,0,1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="1" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                <Rectangle Grid.Column="3" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                <TextBlock Grid.Column="0" Text="Name" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" />
+                <TextBlock Grid.Column="2" Text="Games" Foreground="White" FontSize="32" TextAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" />
+                <TextBlock Grid.Column="4" Text="Avg." Foreground="White" FontSize="32" TextAlignment="Center" Margin="0,5,0,0" VerticalAlignment="Center" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" />
+            </Grid>
+            <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Right">
+                <ItemsControl x:Name="PeopleList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="#666666" Margin="0,0,0,1" Tapped="Player_Tapped">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="51" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="1" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="1" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="51" />
+                                </Grid.RowDefinitions>
+                                <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+                                    <Grid Visibility="Collapsed" Tapped="RemovePlayerButton_Tapped">
+                                        <Ellipse Stroke="White" StrokeThickness="2" Fill="Transparent" Margin="10" />
+                                        <TextBlock Text="x" TextAlignment="Center" VerticalAlignment="Center" FontSize="30" Margin="0,-4,0,0" />
+                                    </Grid>
+                                </Grid>
+                                <Rectangle Grid.Column="2" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                                <Rectangle Grid.Column="4" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="18" Margin="15,0,0,0" Foreground="White" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="3" Text="{Binding GameHistory.Count}" FontSize="18" TextAlignment="Center" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="5" Text="{Binding Converter={StaticResource PlayerToAverageConverter}}" Foreground="White" FontSize="18" TextAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <Grid x:Name="AddBowlerButton" Grid.Row="0" Grid.Column="3" Grid.RowSpan="6" Width="200" Height="200" VerticalAlignment="Top" Tapped="AddBowlerButton_Tapped">
+                <Ellipse x:Name="NewGameButton" Fill="Transparent" Stroke="White" StrokeThickness="5" MaxHeight="200" MaxWidth="200" MinHeight="200" VerticalAlignment="Top" />
+                <TextBlock Text="+" Grid.Row="0" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" FontSize="200" Margin="38,-2,35,15" />
+            </Grid>
+            <Grid x:Name="FormHeader" Background="#333333" Grid.Column="3" Margin="0,0,0,1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="PlayerName" Text="Jeff Blankenburg" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="32"/>
+                <TextBlock Text="X" VerticalAlignment="Center" TextAlignment="Right" Margin="0,5,15,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="32" Tapped="CloseForm_Tapped"/>
+            </Grid>
+            <Grid Grid.Column="3" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid x:Name="FormBody" Background="#999999" Visibility="Collapsed" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="52" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="52" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="1" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Grid.Column="1" Grid.Row="0" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                        <Rectangle Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" VerticalAlignment="Center" FontSize="20" Margin="15,0,0,0" />
+                        <TextBox x:Name="NameBox" Grid.Column="2" Grid.Row="0" Margin="10" FontSize="18" Padding="0" MaxLength="25" GotFocus="NameBox_GotFocus"  />
+
+                        <Rectangle Grid.Column="1" Grid.Row="2" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                        <Rectangle Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Nickname (10 characters)" VerticalAlignment="Center" FontSize="20" Margin="15,0,0,0" />
+                        <TextBox x:Name="NicknameBox" Grid.Column="2" Grid.Row="2" Margin="10" FontSize="18" Padding="0" MaxLength="10" GotFocus="NameBox_GotFocus" />
+
+                        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="125" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="BowlerNameErrorMessage" Text="You must provide both a name AND a nickname for this bowler." TextWrapping="Wrap" Foreground="#333333" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" TextAlignment="Left" Margin="15,0,15,0" Visibility="Collapsed" />
+                            <Button Grid.Column="1" x:Name="SaveBowlerButton" Margin="10" Style="{StaticResource SaveBowlerAppBarButtonStyle}" Click="SavePlayerData_Click" />
+                        </Grid>
+                        
+                        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="3" Margin="15,15,0,0" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="GameList">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapGrid Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="147" Height="147" Margin="0,0,15,15" Background="#666666" Tapped="GameScore_Tapped">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="120" />
+                                                <RowDefinition Height="27" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding Converter={StaticResource ScoreToStringConverter}}" VerticalAlignment="Center" TextAlignment="Center" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="64" Margin="0,20,0,0"/>
+                                            <TextBlock Grid.Row="1" Text="{Binding DateTime, Converter={StaticResource DateTimeToMonthDayConverter}}" VerticalAlignment="Center" TextAlignment="Center" FontSize="15" Margin="5,0"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

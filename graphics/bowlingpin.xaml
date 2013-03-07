@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="Document" Width="40.3497" Height="133.333" Clip="F1 M 0,0L 40.3497,0L 40.3497,133.333L 0,133.333L 0,0">
+	<Canvas x:Name="Layer_1" Width="799.933" Height="600.501" Canvas.Left="0" Canvas.Top="0">
+		<Path x:Name="Path" Width="20.0786" Height="30.3828" Canvas.Left="10.1348" Canvas.Top="1.52588e-005" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 28.8898,30.3828C 30.6594,15.2735 32.6958,1.52588e-005 20.175,1.52588e-005C 7.65228,1.52588e-005 9.68808,15.2735 11.4589,30.3828L 28.8898,30.3828 Z "/>
+		<Path x:Name="Path_0" Width="16.0698" Height="6.93762" Canvas.Left="12.1392" Canvas.Top="36.6028" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 27.7688,43.5404C 27.813,41.332 27.9797,38.9973 28.2089,36.6028L 12.1392,36.6028C 12.3683,38.9987 12.5364,41.3334 12.5807,43.5404L 27.7688,43.5404 Z "/>
+		<Path x:Name="Path_1" Width="40.536" Height="83.5722" Canvas.Left="-0.0931611" Canvas.Top="49.7611" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 28.0813,49.7611L 12.2681,49.7611C 11.9524,51.9734 11.3788,53.9225 10.4433,55.4973C -12.7969,94.6536 9.25,127.974 12.0429,131.578C 13.1855,133.055 18.1165,133.333 20.175,133.333C 22.2324,133.333 27.1633,133.053 28.3079,131.578C 31.0995,127.974 53.1463,94.6536 29.9067,55.4973C 28.9693,53.9212 28.3977,51.972 28.0813,49.7611 Z "/>
+	</Canvas>
+</Canvas>
