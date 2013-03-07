@@ -198,19 +198,28 @@ namespace BowlingScorer
         {
             Grid g = sender as Grid;
             OldScore.Background = Gray666Brush;
-            g.Background = Gray444Brush;
-            ShowRemoveGameButton();
-            OldScore = g;
+            if (OldScore != g)
+            {
+                
+                g.Background = Gray444Brush;
+                ShowRemoveGameButton();
+                OldScore = g;
+            }
+            else
+            {
+                OldScore = new Grid();
+                HideRemoveGameButton();
+            }
         }
 
         private void ShowRemoveGameButton()
         {
-            //RemoveScoreButton.Visibility = Visibility.Visible;
+            RemoveScoreButton.Visibility = Visibility.Visible;
         }
 
         private void HideRemoveGameButton()
         {
-            //RemoveScoreButton.Visibility = Visibility.Collapsed;
+            RemoveScoreButton.Visibility = Visibility.Collapsed;
         }
 
         private void RemovePlayerButton_Tapped(object sender, TappedRoutedEventArgs e)

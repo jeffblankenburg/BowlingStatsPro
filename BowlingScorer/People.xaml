@@ -44,11 +44,11 @@
             </Grid.RowDefinitions>
             <Grid Background="#333333" Grid.Column="1" Margin="0,0,0,1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="1" />
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="1" />
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="120" />
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="1" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
                 <Rectangle Grid.Column="3" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
@@ -62,15 +62,15 @@
                         <DataTemplate>
                             <Grid Background="#666666" Margin="0,0,0,1" Tapped="Player_Tapped">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="51" />
-                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="52" />
+                                    <ColumnDefinition Width="180" />
                                     <ColumnDefinition Width="1" />
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="1" />
-                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="118" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="51" />
+                                    <RowDefinition Height="52" />
                                 </Grid.RowDefinitions>
                                 <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
                                     <Grid Visibility="Collapsed" Tapped="RemovePlayerButton_Tapped">
@@ -98,11 +98,10 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="PlayerName" Text="Jeff Blankenburg" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="32"/>
-                <TextBlock Text="X" VerticalAlignment="Center" TextAlignment="Right" Margin="0,5,15,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="32" Tapped="CloseForm_Tapped"/>
             </Grid>
             <Grid Grid.Column="3" Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid x:Name="FormBody" Background="#999999" Visibility="Collapsed" Margin="0,0,0,10">
@@ -117,7 +116,8 @@
                             <RowDefinition Height="1" />
                             <RowDefinition Height="52" />
                             <RowDefinition Height="1" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="1" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
@@ -131,16 +131,18 @@
                         <TextBlock Grid.Column="0" Grid.Row="2" Text="Nickname (10 characters)" VerticalAlignment="Center" FontSize="20" Margin="15,0,0,0" />
                         <TextBox x:Name="NicknameBox" Grid.Column="2" Grid.Row="2" Margin="10" FontSize="18" Padding="0" MaxLength="10" GotFocus="NameBox_GotFocus" />
 
-                        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                        <TextBlock Grid.Row="4" Grid.ColumnSpan="3" x:Name="BowlerNameErrorMessage" Text="You must provide both a name AND a nickname for this bowler." TextWrapping="Wrap" Foreground="#333333" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" TextAlignment="Left" Margin="15,15,15,0" Visibility="Collapsed" />
+
+                        <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="125" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="BowlerNameErrorMessage" Text="You must provide both a name AND a nickname for this bowler." TextWrapping="Wrap" Foreground="#333333" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" TextAlignment="Left" Margin="15,0,15,0" Visibility="Collapsed" />
-                            <Button Grid.Column="1" x:Name="SaveBowlerButton" Margin="10" Style="{StaticResource SaveBowlerAppBarButtonStyle}" Click="SavePlayerData_Click" />
+                            <Button Grid.Column="0" x:Name="RemoveScoreButton" Margin="10" Style="{StaticResource RemoveScoreAppBarButtonStyle}" Click="RemoveScoreButton_Click" HorizontalAlignment="Left" Visibility="Collapsed" />
+                            <Button Grid.Column="1" x:Name="SaveBowlerButton" Margin="10" Style="{StaticResource SaveBowlerAppBarButtonStyle}" Click="SavePlayerData_Click" HorizontalAlignment="Right" />
                         </Grid>
                         
-                        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="3" Margin="15,15,0,0" VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer Grid.Row="5" Grid.ColumnSpan="3" Margin="15,15,0,0" VerticalScrollBarVisibility="Auto">
                             <ItemsControl x:Name="GameList">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
