@@ -9,12 +9,14 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
@@ -47,6 +49,7 @@ namespace BowlingScorer
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            SettingsPane.GetForCurrentView().CommandsRequested += App_CommandsRequested;
             GrabPlayerHistory();
             
             Frame rootFrame = Window.Current.Content as Frame;
@@ -79,6 +82,49 @@ namespace BowlingScorer
             }
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        void App_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            SettingsCommand command = new SettingsCommand("about", "About This App", (handler) =>
+            {
+                Popup popup = BuildSettingsItem(new AboutPage(), 343);
+                popup.DataContext = this;
+                popup.IsOpen = true;
+            });
+
+            SettingsCommand command2 = new SettingsCommand("reset", "Reset Bowling Data", (handler) =>
+            {
+                Popup popup = BuildSettingsItem(new ResetAllData(), 343);
+                popup.IsOpen = true;
+            });
+ 
+            args.Request.ApplicationCommands.Add(command);
+            args.Request.ApplicationCommands.Add(command2);
+
+        }
+
+        private Popup BuildSettingsItem(UserControl page, int width)
+        {
+            Popup p = new Popup();
+            p.IsLightDismissEnabled = true;
+            p.ChildTransitions = new TransitionCollection();
+            p.ChildTransitions.Add(new PaneThemeTransition()
+            {
+                Edge = (SettingsPane.Edge == SettingsEdgeLocation.Right) ?
+                        EdgeTransitionLocation.Right :
+                        EdgeTransitionLocation.Left
+            });
+
+            page.Width = width;
+            page.Height = Window.Current.Bounds.Height;
+            p.Child = page;
+
+            p.SetValue(Canvas.LeftProperty, SettingsPane.Edge == SettingsEdgeLocation.Right ? (Window.Current.Bounds.Width - width) : 0);
+            p.SetValue(Canvas.TopProperty, 0);
+
+            return p;
+
         }
 
         private async void GrabPlayerHistory()

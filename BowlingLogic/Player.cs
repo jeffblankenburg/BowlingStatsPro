@@ -9,6 +9,7 @@ namespace BowlingLogic
     {
         public string Name { get; set; }
         public string Nickname { get; set; }
+        public string EmailAddress { get; set; }
         public Game Game { get; set; }
         public List<Game> GameHistory { get; set; }
         public double Average { get; set; }
@@ -30,6 +31,7 @@ namespace BowlingLogic
             Name = name;
             if (name.Length > 10) Nickname = name.Substring(0, 10);
             else Nickname = name;
+            EmailAddress = "";
             Game = new Game();
             GameHistory = new List<Game>();
             UpdateStatistics();
@@ -65,9 +67,9 @@ namespace BowlingLogic
 
             if (GameHistory.Count != 0)
             {
-                Average = TotalScore / GameHistory.Count;
-                StrikePercentage = StrikeTotal / GameHistory.Count;
-                SparePercentage = SpareTotal / GameHistory.Count;
+                Average = (double)TotalScore / (double)GameHistory.Count;
+                StrikePercentage = (double)StrikeTotal / (double)GameHistory.Count;
+                SparePercentage = (double)SpareTotal / (double)GameHistory.Count;
             }
             else
             {

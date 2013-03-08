@@ -39,12 +39,21 @@ namespace BowlingScorer
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             PopulatePeopleList();
+            BottomBar.IsOpen = true;
         }
 
         private void PopulatePeopleList()
         {
             PeopleList.ItemsSource = null;
-            PeopleList.ItemsSource = from p in App.PlayerHistory orderby p.Average descending select p;
+            if (App.PlayerHistory.Count != 0)
+            {
+                PeopleListHeader.Visibility = Visibility.Visible;
+                PeopleList.ItemsSource = from p in App.PlayerHistory orderby p.Average descending select p;
+            }
+            else
+            {
+                PeopleListHeader.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
@@ -78,13 +87,15 @@ namespace BowlingScorer
                 PlayerName.Text = p.Name;
                 NameBox.Text = p.Name;
                 NicknameBox.Text = p.Nickname;
-                LoadGameList();
+                //EmailBox.Text = p.EmailAddress;
+                if (p.GameHistory.Count != 0) LoadGameList();
             }
             else
             {
                 PlayerName.Text = "Add New Bowler";
                 NameBox.Text = "";
                 NicknameBox.Text = "";
+                //EmailBox.Text = "";
             }
             BowlerNameErrorMessage.Visibility = Visibility.Collapsed;
             FormHeader.Visibility = Visibility.Visible;
@@ -126,6 +137,7 @@ namespace BowlingScorer
             App.PlayerHistory.Remove(p);
             p.Name = NameBox.Text;
             p.Nickname = NicknameBox.Text;
+            //p.EmailAddress = EmailBox.Text;
             p.UpdateStatistics();
             App.PlayerHistory.Add(p);
             App.SavePlayerData();
@@ -141,12 +153,12 @@ namespace BowlingScorer
 
         private void ShowAddBowlerButton()
         {
-            AddBowlerButton.Visibility = Visibility.Visible;
+            //AddBowlerButton.Visibility = Visibility.Visible;
         }
 
         private void HideAddBowlerButton()
         {
-            AddBowlerButton.Visibility = Visibility.Collapsed;
+            //AddBowlerButton.Visibility = Visibility.Collapsed;
         }
 
         private void AddBowlerButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -249,6 +261,11 @@ namespace BowlingScorer
                 HideEditForm();
                 PopulatePeopleList();
             }
+        }
+
+        private void EmailBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            BowlerNameErrorMessage.Visibility = Visibility.Collapsed;
         }
     }
 }

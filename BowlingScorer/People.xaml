@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Bowlers" Style="{StaticResource PageHeaderTextStyle}" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="70"/>
-            <UI:AdControl x:Name="AdBox" Grid.Column="1" HorizontalAlignment="Center" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" Margin="200,0,0,0" />
+            <UI:AdControl x:Name="AdBox" Grid.Column="1" HorizontalAlignment="Right" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" Margin="200,0,10,0" />
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Background="#333333" Grid.Column="1" Margin="0,0,0,1">
+            <Grid x:Name="PeopleListHeader" Background="#333333" Grid.Column="1" Margin="0,0,0,1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="1" />
@@ -88,10 +88,10 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <Grid x:Name="AddBowlerButton" Grid.Row="0" Grid.Column="3" Grid.RowSpan="6" Width="200" Height="200" VerticalAlignment="Top" Tapped="AddBowlerButton_Tapped">
+            <!--<Grid x:Name="AddBowlerButton" Grid.Row="0" Grid.Column="3" Grid.RowSpan="6" Width="200" Height="200" VerticalAlignment="Top" Tapped="AddBowlerButton_Tapped">
                 <Ellipse x:Name="NewGameButton" Fill="Transparent" Stroke="White" StrokeThickness="5" MaxHeight="200" MaxWidth="200" MinHeight="200" VerticalAlignment="Top" />
                 <TextBlock Text="+" Grid.Row="0" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" FontSize="200" Margin="38,-2,35,15" />
-            </Grid>
+            </Grid>-->
             <Grid x:Name="FormHeader" Background="#333333" Grid.Column="3" Margin="0,0,0,1" Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -104,7 +104,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Grid x:Name="FormBody" Background="#999999" Visibility="Collapsed" Margin="0,0,0,10">
+                <Grid x:Name="FormBody" Background="#888888" Visibility="Collapsed" Margin="0,0,0,10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -116,6 +116,8 @@
                             <RowDefinition Height="1" />
                             <RowDefinition Height="52" />
                             <RowDefinition Height="1" />
+                            <!--<RowDefinition Height="52" />
+                            <RowDefinition Height="1" />-->
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="1" />
@@ -130,6 +132,11 @@
                         <Rectangle Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
                         <TextBlock Grid.Column="0" Grid.Row="2" Text="Nickname (10 characters)" VerticalAlignment="Center" FontSize="20" Margin="15,0,0,0" />
                         <TextBox x:Name="NicknameBox" Grid.Column="2" Grid.Row="2" Margin="10" FontSize="18" Padding="0" MaxLength="10" GotFocus="NameBox_GotFocus" />
+
+                        <!--<Rectangle Grid.Column="1" Grid.Row="4" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                        <Rectangle Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                        <TextBlock Grid.Column="0" Grid.Row="4" Text="Email Address" VerticalAlignment="Center" FontSize="20" Margin="15,0,0,0" />
+                        <TextBox x:Name="EmailBox" Grid.Column="2" Grid.Row="4" Margin="10" FontSize="18" Padding="0" MaxLength="50" GotFocus="EmailBox_GotFocus" />-->
 
                         <TextBlock Grid.Row="4" Grid.ColumnSpan="3" x:Name="BowlerNameErrorMessage" Text="You must provide both a name AND a nickname for this bowler." TextWrapping="Wrap" Foreground="#333333" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" TextAlignment="Left" Margin="15,15,15,0" Visibility="Collapsed" />
 
@@ -168,4 +175,15 @@
             </Grid>
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <AppBar x:Name="BottomBar">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" x:Name="AddPlayerButton" Margin="10" Style="{StaticResource AddPlayerAppBarButtonStyle}" Click="AddPlayerButton_Click" HorizontalAlignment="Right" />
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
 </Page>
