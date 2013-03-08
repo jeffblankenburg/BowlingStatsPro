@@ -124,7 +124,18 @@ namespace BowlingScorer
 
         void Game_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ResizeBoard();
+            double w = Windows.UI.Xaml.Window.Current.Bounds.Width;
+            if (w == 320)
+            {
+                AdBox.Visibility = Visibility.Collapsed;
+                SnappedViewCover.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AdBox.Visibility = Visibility.Visible;
+                SnappedViewCover.Visibility = Visibility.Collapsed;
+                ResizeBoard();
+            }
         }
 
         private void AddPlayerButton_Click(object sender, RoutedEventArgs e)

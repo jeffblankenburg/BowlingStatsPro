@@ -98,9 +98,16 @@ namespace BowlingScorer
                 Popup popup = BuildSettingsItem(new ResetAllData(), 343);
                 popup.IsOpen = true;
             });
+
+            SettingsCommand command3 = new SettingsCommand("privacy", "Privacy Policy", (handler) =>
+            {
+                Popup popup = BuildSettingsItem(new PrivacyPolicyPage(), 343);
+                popup.IsOpen = true;
+            });
  
             args.Request.ApplicationCommands.Add(command);
             args.Request.ApplicationCommands.Add(command2);
+            args.Request.ApplicationCommands.Add(command3);
 
         }
 

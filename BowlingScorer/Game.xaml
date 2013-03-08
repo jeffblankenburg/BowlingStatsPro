@@ -85,6 +85,9 @@
                 </StackPanel>
             </Grid>
         </Grid>
+        <Grid x:Name="SnappedViewCover" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.ColumnSpan="100" Grid.RowSpan="100" Visibility="Collapsed">
+            <Image Source="Assets/WideLogo.png" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
     </Grid>
     <Page.BottomAppBar>
         <AppBar x:Name="BottomBar">

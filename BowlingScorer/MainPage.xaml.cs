@@ -29,7 +29,12 @@ namespace BowlingScorer
 
         void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ResizeBoard();
+            double w = Windows.UI.Xaml.Window.Current.Bounds.Width;
+            if (w == 320)
+            {
+                Frame.Navigate(typeof(SnappedView));
+            }
+            else ResizeBoard();
         }
 
         /// <summary>
@@ -49,9 +54,12 @@ namespace BowlingScorer
 
             double remaining = w - h;
 
-            Left.Width = new GridLength(remaining / 2);
-            Right.Width = new GridLength(remaining / 2);
-            Center.Width = new GridLength(h);
+            if (remaining >= 0)
+            {
+                Left.Width = new GridLength(remaining / 2);
+                Right.Width = new GridLength(remaining / 2);
+                Center.Width = new GridLength(h);
+            }
         }
 
         private void NewGameButton_Tapped(object sender, TappedRoutedEventArgs e)

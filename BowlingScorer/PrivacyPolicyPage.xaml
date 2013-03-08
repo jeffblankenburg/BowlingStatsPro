@@ -1,0 +1,46 @@
+﻿<UserControl
+    x:Class="BowlingScorer.PrivacyPolicyPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BowlingScorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Border BorderBrush="#999999" BorderThickness="3,0,0,0">
+        <Grid Background="#666666" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- HEADER -->
+            <Grid Background="#666666" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="40, 32, 17, 13">
+                    <Button x:Name="BackButton" Margin="0,3,0,0" Style="{StaticResource BackButtonStyle}" Click="BackButton_Click"/>
+                    <TextBlock Margin="10,10,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" FontSize="32" Text="Bowling Stats Pro" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+
+            <Rectangle Fill="#999999" Grid.Row="1"/>
+
+            <!-- CONTENT AREA -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+                <Grid Margin="40,33,40,39" VerticalAlignment="Top" Grid.RowSpan="3">
+                    <StackPanel Grid.Row="1" >
+                        <TextBlock Text="This application requests access to the internet to provide advertisements, but neither the app itself or any of the ads in the app collect, store or share any identifying information from users. Rest assured that your privacy is respected. If you would like to report any violation of this policy, you can contact me at: " TextWrapping="Wrap" Foreground="White" />
+                        <TextBlock Text="privacy@jexed.com" FontWeight="Bold" TextWrapping="Wrap" Foreground="White" Margin="0,20,0,0" FontSize="18" Tapped="TextBlock_Tapped" />
+                        <TextBlock Text="Thank you for using and trusting our software." TextWrapping="Wrap" Foreground="White" Margin="0,20,0,20" />
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</UserControl>

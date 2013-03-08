@@ -28,6 +28,22 @@ namespace BowlingScorer
         public Statistics()
         {
             this.InitializeComponent();
+            this.SizeChanged += Statistics_SizeChanged;
+        }
+
+        void Statistics_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double w = Windows.UI.Xaml.Window.Current.Bounds.Width;
+            if (w == 320)
+            {
+                AdBox.Visibility = Visibility.Collapsed;
+                SnappedViewCover.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                AdBox.Visibility = Visibility.Visible;
+                SnappedViewCover.Visibility = Visibility.Collapsed;
+            }
         }
 
         /// <summary>
