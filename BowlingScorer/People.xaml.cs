@@ -88,7 +88,6 @@ namespace BowlingScorer
                 NameBox.Text = p.Name;
                 NicknameBox.Text = p.Nickname;
                 //EmailBox.Text = p.EmailAddress;
-                if (p.GameHistory.Count != 0) LoadGameList();
             }
             else
             {
@@ -97,6 +96,7 @@ namespace BowlingScorer
                 NicknameBox.Text = "";
                 //EmailBox.Text = "";
             }
+            LoadGameList();
             BowlerNameErrorMessage.Visibility = Visibility.Collapsed;
             FormHeader.Visibility = Visibility.Visible;
             FormBody.Visibility = Visibility.Visible;

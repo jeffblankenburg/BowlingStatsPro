@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="21982JeffBlankenburg.BowlingStatsPro" Publisher="CN=B325A2AE-FA39-4C97-8EE0-7A63DD53FD47" Version="1.0.0.0" />
+  <Identity Name="21982JeffBlankenburg.BowlingStatsPro" Publisher="CN=B325A2AE-FA39-4C97-8EE0-7A63DD53FD47" Version="1.0.0.1" />
   <Properties>
     <DisplayName>Bowling Stats Pro</DisplayName>
     <PublisherDisplayName>Jeff Blankenburg</PublisherDisplayName>
@@ -25,7 +25,4 @@
       </VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
