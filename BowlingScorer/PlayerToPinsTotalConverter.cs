@@ -8,12 +8,17 @@ using Windows.UI.Xaml.Data;
 
 namespace BowlingScorer
 {
-    class PlayerToAverageConverter : IValueConverter
+    class PlayerToPinsTotalConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             Player p = value as Player;
-            return p.Average.ToString("N2");
+            int PinCount = 0;
+            for (int i = 0; i < p.GameHistory.Count; i++)
+            {
+                PinCount += p.GameHistory[i].Score;
+            }
+            return PinCount;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -22,3 +27,4 @@ namespace BowlingScorer
         }
     }
 }
+

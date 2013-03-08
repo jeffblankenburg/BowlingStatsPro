@@ -135,6 +135,12 @@
       <DependentUpon>People.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\PlayerToAverageConverter.cs" />
+    <Compile Include="Converters\PlayerToStrikeTotalConverter.cs" />
+    <Compile Include="Converters\PlayerToGutterballTotalConverter.cs" />
+    <Compile Include="Converters\PlayerToSpareTotalConverter.cs" />
+    <Compile Include="Converters\PlayerToStrikePercentageConverter.cs" />
+    <Compile Include="Converters\PlayerToSparePercentageConverter.cs" />
+    <Compile Include="PlayerToPinsTotalConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Icons\StatisticsIcon.xaml.cs">
       <DependentUpon>StatisticsIcon.xaml</DependentUpon>

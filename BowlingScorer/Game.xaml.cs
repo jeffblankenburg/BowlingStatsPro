@@ -598,35 +598,16 @@ namespace BowlingScorer
                     WasAdded = true;
                     p.GameHistory.Add(Players[CurrentPlayer - 1].Game);
                 }
+                p.UpdateStatistics();
 
             }
             if (!WasAdded)
             {
                 Players[CurrentPlayer - 1].GameHistory.Add(Players[CurrentPlayer - 1].Game);
                 App.PlayerHistory.Add(Players[CurrentPlayer - 1]);
+                Players[CurrentPlayer - 1].UpdateStatistics();
             }
             App.SavePlayerData();
-        }
-
-        private async void SavePlayerData()
-        {
-            var applicationData = ApplicationData.Current;
-            var storageFolder = applicationData.LocalFolder;
-
-            var file = await storageFolder.CreateFileAsync("playerdata.xml", CreationCollisionOption.OpenIfExists);
-
-            var dataContractSerializer = new DataContractSerializer(typeof(Player));
-            var memoryStream = new MemoryStream();
-            dataContractSerializer.WriteObject(memoryStream, Players);
-            memoryStream.Seek(0, SeekOrigin.Begin);
-
-            string serialized = new StreamReader(memoryStream).ReadToEnd();
-            memoryStream.Dispose();
-
-            var doc = new XmlDocument();
-            doc.LoadXml(serialized);
-
-            await doc.SaveToFileAsync(file);
         }
 
         private void ChangeNumberButtons(int roll1)

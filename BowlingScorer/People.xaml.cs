@@ -44,7 +44,7 @@ namespace BowlingScorer
         private void PopulatePeopleList()
         {
             PeopleList.ItemsSource = null;
-            PeopleList.ItemsSource = from p in App.PlayerHistory orderby p.GameHistory.Count descending select p;
+            PeopleList.ItemsSource = from p in App.PlayerHistory orderby p.Average descending select p;
         }
 
         private void GoBack(object sender, RoutedEventArgs e)
@@ -126,6 +126,7 @@ namespace BowlingScorer
             App.PlayerHistory.Remove(p);
             p.Name = NameBox.Text;
             p.Nickname = NicknameBox.Text;
+            p.UpdateStatistics();
             App.PlayerHistory.Add(p);
             App.SavePlayerData();
             HideEditForm();
@@ -185,6 +186,8 @@ namespace BowlingScorer
                 if (command.Label == "Yes")
                 {
                     p.GameHistory.Remove(g);
+                    p.UpdateStatistics();
+                    HideRemoveGameButton();
                     LoadGameList();
                     PopulatePeopleList();
                     App.SavePlayerData();
@@ -242,6 +245,7 @@ namespace BowlingScorer
             {
                 App.PlayerHistory.Remove(p);
                 App.SavePlayerData();
+                GameList.ItemsSource = null;
                 HideEditForm();
                 PopulatePeopleList();
             }

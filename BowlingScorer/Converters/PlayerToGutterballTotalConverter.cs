@@ -8,12 +8,12 @@ using Windows.UI.Xaml.Data;
 
 namespace BowlingScorer
 {
-    class PlayerToAverageConverter : IValueConverter
+    class PlayerToGutterballTotalConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             Player p = value as Player;
-            return p.Average.ToString("N2");
+            return p.GutterballTotal;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

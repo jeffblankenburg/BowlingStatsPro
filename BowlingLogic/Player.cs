@@ -11,6 +11,13 @@ namespace BowlingLogic
         public string Nickname { get; set; }
         public Game Game { get; set; }
         public List<Game> GameHistory { get; set; }
+        public double Average { get; set; }
+        public int StrikeTotal {get; set;}
+        public int SpareTotal { get; set; }
+        public int GutterballTotal { get; set; }
+        public double StrikePercentage { get; set; }
+        public double SparePercentage { get; set; }
+        public int TotalPins { get; set; }
 
         public Player()
         {
@@ -25,6 +32,49 @@ namespace BowlingLogic
             else Nickname = name;
             Game = new Game();
             GameHistory = new List<Game>();
+            UpdateStatistics();
+        }
+
+        public void UpdateStatistics()
+        {
+            int TotalScore = 0;
+            int StrikeCount = 0;
+            int SpareCount = 0;
+            int GutterballCount = 0;
+            for (int i = 0; i < GameHistory.Count; i++)
+            {
+                TotalScore += GameHistory[i].Score;
+
+                for (int j = 0; j < 10; j++)
+                {
+                    if (GameHistory[i].Frames[j].RollONE == "X") StrikeCount++;
+                    else if (GameHistory[i].Frames[j].RollONE == "-") GutterballCount++;
+                    if (GameHistory[i].Frames[j].RollTWO == "X") StrikeCount++;
+                    else if (GameHistory[i].Frames[j].RollTWO == "/") SpareCount++;
+                    else if (GameHistory[i].Frames[j].RollTWO == "-") GutterballCount++;
+                    if (GameHistory[i].Frames[j].RollTHREE == "X") StrikeCount++;
+                    else if (GameHistory[i].Frames[j].RollTHREE == "/") SpareCount++;
+                    else if (GameHistory[i].Frames[j].RollTHREE == "-") GutterballCount++;
+                }
+            }
+
+            StrikeTotal = StrikeCount;
+            SpareTotal = SpareCount;
+            GutterballTotal = GutterballCount;
+            TotalPins = TotalScore;
+
+            if (GameHistory.Count != 0)
+            {
+                Average = TotalScore / GameHistory.Count;
+                StrikePercentage = StrikeTotal / GameHistory.Count;
+                SparePercentage = SpareTotal / GameHistory.Count;
+            }
+            else
+            {
+                Average = 0;
+                StrikePercentage = 0;
+                SparePercentage = 0;
+            }
         }
     }
 }
