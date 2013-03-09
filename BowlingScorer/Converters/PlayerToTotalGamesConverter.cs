@@ -8,12 +8,12 @@ using Windows.UI.Xaml.Data;
 
 namespace BowlingScorer
 {
-    class PlayerToStrikePercentageConverter : IValueConverter
+    class PlayerToTotalGamesConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             Player p = value as Player;
-            return p.StrikePercentage.ToString("N2") + "%";
+            return p.GameHistory.Count;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

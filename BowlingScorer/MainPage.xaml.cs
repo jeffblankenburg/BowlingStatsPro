@@ -45,6 +45,7 @@ namespace BowlingScorer
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ResizeBoard();
+            CircleAnimation.Begin();
         }
 
         private void ResizeBoard()

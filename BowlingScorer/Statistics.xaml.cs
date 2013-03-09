@@ -88,6 +88,9 @@ namespace BowlingScorer
                 case 7:
                     StatsList.ItemsSource = from p in App.PlayerHistory orderby p.TotalPins descending select p;
                     break;
+                case 8:
+                    StatsList.ItemsSource = from p in App.PlayerHistory orderby p.GameHistory.Count descending select p;
+                    break;
             }
             
         }
@@ -142,6 +145,12 @@ namespace BowlingScorer
         private void Name_Tapped(object sender, TappedRoutedEventArgs e)
         {
             SortType = 0;
+            LoadPlayers();
+        }
+
+        private void Games_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            SortType = 8;
             LoadPlayers();
         }
     }

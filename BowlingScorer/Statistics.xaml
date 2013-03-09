@@ -16,7 +16,8 @@
         <local:PlayerToGutterballTotalConverter x:Key="PlayerToGutterballTotalConverter" />
         <local:PlayerToStrikePercentageConverter x:Key="PlayerToStrikePercentageConverter" />
         <local:PlayerToSparePercentageConverter x:Key="PlayerToSparePercentageConverter" />
-        <local:PlayerToPinsTotalConverter x:Key="PlayerToPinsTotalConverter" />        
+        <local:PlayerToPinsTotalConverter x:Key="PlayerToPinsTotalConverter" />
+        <local:PlayerToTotalGamesConverter x:Key="PlayerToTotalGamesConverter" />
     </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -52,8 +53,8 @@
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition Width="1"/>
                     <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="1"/>
-                    <ColumnDefinition Width="150"/>
+                    <!--<ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="150"/>-->
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="51" />
@@ -67,15 +68,15 @@
                 <Rectangle Fill="#333333" Grid.Column="9"/>
                 <Rectangle Fill="#333333" Grid.Column="11"/>
                 <Rectangle Fill="#333333" Grid.Column="13"/>
-                <Rectangle Fill="#333333" Grid.Column="15"/>
+                <!--<Rectangle Fill="#333333" Grid.Column="15"/>-->
                 <TextBlock Grid.Column="1" Text="Name" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Name_Tapped"/>
-                <TextBlock Grid.Column="3" Text="Average" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Average_Tapped"/>
-                <TextBlock Grid.Column="5" Text="Strikes" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Strikes_Tapped"/>
-                <TextBlock Grid.Column="7" Text="Spares" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Spares_Tapped"/>
-                <TextBlock Grid.Column="9" Text="Gutterballs" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Gutterballs_Tapped"/>
-                <TextBlock Grid.Column="11" Text="Strike Pct." Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="StrikePercentage_Tapped"/>
-                <TextBlock Grid.Column="13" Text="Spare Pct." Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="SparePercentage_Tapped"/>
-                <TextBlock Grid.Column="15" Text="Total Pins" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="TotalPins_Tapped"/>
+                <TextBlock Grid.Column="3" Text="Games" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Games_Tapped"/>
+                <TextBlock Grid.Column="5" Text="Average" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Average_Tapped"/>
+                <TextBlock Grid.Column="7" Text="Strikes" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Strikes_Tapped"/>
+                <TextBlock Grid.Column="9" Text="Spares" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Spares_Tapped"/>
+                <TextBlock Grid.Column="11" Text="Gutterballs" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="Gutterballs_Tapped"/>
+                <!--<TextBlock Grid.Column="13" Text="Strike Pct." Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="StrikePercentage_Tapped"/>-->
+                <TextBlock Grid.Column="13" Text="Total Pins" Foreground="White" FontSize="32" VerticalAlignment="Center" Margin="15,5,0,0" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Tapped="TotalPins_Tapped"/>
                 <ScrollViewer Grid.Column="1" Grid.ColumnSpan="17" Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left">
                     <ItemsControl x:Name="StatsList">
                         <ItemsControl.ItemTemplate>
@@ -95,8 +96,8 @@
                                         <ColumnDefinition Width="150"/>
                                         <ColumnDefinition Width="1"/>
                                         <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="1"/>
-                                        <ColumnDefinition Width="150"/>
+                                        <!--<ColumnDefinition Width="1"/>
+                                        <ColumnDefinition Width="150"/>-->
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="51" />
@@ -111,13 +112,13 @@
                                     <Rectangle Fill="#666666" Grid.Column="12"/>
                                     <Rectangle Fill="#666666" Grid.Column="14"/>
                                     <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
-                                    <TextBlock Grid.Column="2" Text="{Binding Converter={StaticResource PlayerToAverageConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
-                                    <TextBlock Grid.Column="4" Text="{Binding Converter={StaticResource PlayerToStrikeTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
-                                    <TextBlock Grid.Column="6" Text="{Binding Converter={StaticResource PlayerToSpareTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
-                                    <TextBlock Grid.Column="8" Text="{Binding Converter={StaticResource PlayerToGutterballTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
-                                    <TextBlock Grid.Column="10" Text="{Binding Converter={StaticResource PlayerToStrikePercentageConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
-                                    <TextBlock Grid.Column="12" Text="{Binding Converter={StaticResource PlayerToSparePercentageConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
-                                    <TextBlock Grid.Column="14" Text="{Binding Converter={StaticResource PlayerToPinsTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
+                                    <TextBlock Grid.Column="2" Text="{Binding Converter={StaticResource PlayerToTotalGamesConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
+                                    <TextBlock Grid.Column="4" Text="{Binding Converter={StaticResource PlayerToAverageConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
+                                    <TextBlock Grid.Column="6" Text="{Binding Converter={StaticResource PlayerToStrikeTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
+                                    <TextBlock Grid.Column="8" Text="{Binding Converter={StaticResource PlayerToSpareTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
+                                    <TextBlock Grid.Column="10" Text="{Binding Converter={StaticResource PlayerToGutterballTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
+                                    <!--<TextBlock Grid.Column="12" Text="{Binding Converter={StaticResource PlayerToStrikePercentageConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />-->
+                                    <TextBlock Grid.Column="12" Text="{Binding Converter={StaticResource PlayerToPinsTotalConverter}}" Foreground="White" FontSize="18" VerticalAlignment="Center" Margin="15,5,0,0" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

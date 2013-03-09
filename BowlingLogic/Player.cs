@@ -68,8 +68,8 @@ namespace BowlingLogic
             if (GameHistory.Count != 0)
             {
                 Average = (double)TotalScore / (double)GameHistory.Count;
-                StrikePercentage = (double)StrikeTotal / (double)GameHistory.Count;
-                SparePercentage = (double)SpareTotal / (double)GameHistory.Count;
+                StrikePercentage = ((double)StrikeTotal / (double)GameHistory.Count * 10) * 100;
+                SparePercentage = ((double)SpareTotal / (double)GameHistory.Count * 10) * 100;
             }
             else
             {

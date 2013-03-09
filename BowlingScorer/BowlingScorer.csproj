@@ -145,7 +145,8 @@
     <Compile Include="Converters\PlayerToSpareTotalConverter.cs" />
     <Compile Include="Converters\PlayerToStrikePercentageConverter.cs" />
     <Compile Include="Converters\PlayerToSparePercentageConverter.cs" />
-    <Compile Include="PlayerToPinsTotalConverter.cs" />
+    <Compile Include="Converters\PlayerToPinsTotalConverter.cs" />
+    <Compile Include="Converters\PlayerToTotalGamesConverter.cs" />
     <Compile Include="PrivacyPolicyPage.xaml.cs">
       <DependentUpon>PrivacyPolicyPage.xaml</DependentUpon>
     </Compile>
