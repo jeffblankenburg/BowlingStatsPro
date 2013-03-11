@@ -5,7 +5,7 @@
     xmlns:local="using:BowlingScorer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" GotFocus="Page_GotFocus">
 	<Page.Resources>
 		<Storyboard x:Name="CircleAnimation">
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="NewGameButton">
@@ -65,7 +65,7 @@
             <Ellipse x:Name="NewGameButton" Grid.Row="1" Grid.Column="0" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="NewGameButton_Tapped" />
             <Ellipse x:Name="ManagePeopleButton" Grid.Row="1" Grid.Column="1" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="ManagePeople_Tapped" />
             <Ellipse x:Name="StatisticsButton" Grid.Row="1" Grid.Column="2" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="StatisticsButton_Tapped" />
-            <UI:AdControl Grid.Row="2" Grid.ColumnSpan="3" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+            <UI:AdControl x:Name="AdBox"  Grid.Row="2" Grid.ColumnSpan="3" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
         </Grid>
     </Grid>
 </Page>

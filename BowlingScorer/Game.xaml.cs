@@ -665,5 +665,15 @@ namespace BowlingScorer
             AddNewPlayerCleanup();
             PlayerList.ItemsSource = GetPlayerList();
         }
+
+        public void ShowAd()
+        {
+            AdBox.Visibility = Visibility.Visible;
+        }
+
+        public void HideAd()
+        {
+            AdBox.Visibility = Visibility.Collapsed;
+        }
     }
 }

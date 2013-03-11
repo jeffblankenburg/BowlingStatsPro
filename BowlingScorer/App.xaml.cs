@@ -88,6 +88,7 @@ namespace BowlingScorer
         {
             SettingsCommand command = new SettingsCommand("about", "About This App", (handler) =>
             {
+                //HideAd();
                 Popup popup = BuildSettingsItem(new AboutPage(), 343);
                 popup.DataContext = this;
                 popup.IsOpen = true;
@@ -95,13 +96,17 @@ namespace BowlingScorer
 
             SettingsCommand command2 = new SettingsCommand("reset", "Reset Bowling Data", (handler) =>
             {
+                //HideAd();
                 Popup popup = BuildSettingsItem(new ResetAllData(), 343);
+                //popup.Closed += popup_Closed;
                 popup.IsOpen = true;
             });
 
             SettingsCommand command3 = new SettingsCommand("privacy", "Privacy Policy", (handler) =>
             {
+                //HideAd();
                 Popup popup = BuildSettingsItem(new PrivacyPolicyPage(), 343);
+                //popup.Closed += popup_Closed;
                 popup.IsOpen = true;
             });
  
@@ -109,6 +114,65 @@ namespace BowlingScorer
             args.Request.ApplicationCommands.Add(command2);
             args.Request.ApplicationCommands.Add(command3);
 
+        }
+
+        void popup_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        void popup_Unloaded(object sender, RoutedEventArgs e)
+        {
+            //ShowAd();
+        }
+
+        void popup_Closed(object sender, object e)
+        {
+            //ShowAd();
+        }
+
+        private void ShowAd()
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            string temp = rootFrame.CurrentSourcePageType.Name;
+            if (temp == "MainPage")
+            {
+                ((MainPage)rootFrame.Content).ShowAd();
+            }
+            else if (temp == "People")
+            {
+                ((People)rootFrame.Content).ShowAd();
+            }
+            else if (temp == "Game")
+            {
+                ((Game)rootFrame.Content).ShowAd();
+            }
+            else if (temp == "Statistics")
+            {
+                ((Statistics)rootFrame.Content).ShowAd();
+            }
+        }
+
+        private void HideAd()
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            string temp = rootFrame.CurrentSourcePageType.Name;
+            if (temp == "MainPage")
+            {
+                ((MainPage)rootFrame.Content).HideAd();
+            }
+            else if (temp == "People")
+            {
+                ((People)rootFrame.Content).HideAd();
+            }
+            else if (temp == "Game")
+            {
+                ((Game)rootFrame.Content).HideAd();
+            }
+            else if (temp == "Statistics")
+            {
+                ((Statistics)rootFrame.Content).HideAd();
+            }
         }
 
         private Popup BuildSettingsItem(UserControl page, int width)

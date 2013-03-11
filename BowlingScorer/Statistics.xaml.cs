@@ -153,5 +153,15 @@ namespace BowlingScorer
             SortType = 8;
             LoadPlayers();
         }
+
+        public void ShowAd()
+        {
+            AdBox.Visibility = Visibility.Visible;
+        }
+
+        public void HideAd()
+        {
+            AdBox.Visibility = Visibility.Collapsed;
+        }
     }
 }

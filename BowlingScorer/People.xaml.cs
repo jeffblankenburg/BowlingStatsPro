@@ -25,11 +25,35 @@ namespace BowlingScorer
     public sealed partial class People : Page
     {
         Player p;
+        bool AdHidden = false;
         
         public People()
         {
             this.InitializeComponent();
             this.SizeChanged += People_SizeChanged;
+            BottomBar.Opened += BottomBar_Opened;
+            BottomBar.Closed += BottomBar_Closed;
+            AdBox.AdRefreshed += AdBox_AdRefreshed;
+        }
+
+        void AdBox_AdRefreshed(object sender, RoutedEventArgs e)
+        {
+            if (!AdHidden)
+            {
+                HideAd();
+                BottomBar.IsOpen = true;
+                AdHidden = true;
+            }
+        }
+
+        void BottomBar_Closed(object sender, object e)
+        {
+            ShowAd();
+        }
+
+        void BottomBar_Opened(object sender, object e)
+        {
+            HideAd();
         }
 
         void People_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -55,7 +79,7 @@ namespace BowlingScorer
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             PopulatePeopleList();
-            BottomBar.IsOpen = true;
+            HideAd();
         }
 
         private void PopulatePeopleList()
@@ -282,6 +306,16 @@ namespace BowlingScorer
         private void EmailBox_GotFocus(object sender, RoutedEventArgs e)
         {
             BowlerNameErrorMessage.Visibility = Visibility.Collapsed;
+        }
+
+        public void ShowAd()
+        {
+            AdBox.Visibility = Visibility.Visible;
+        }
+
+        public void HideAd()
+        {
+            AdBox.Visibility = Visibility.Collapsed;
         }
     }
 }

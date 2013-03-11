@@ -77,5 +77,20 @@ namespace BowlingScorer
         {
             Frame.Navigate(typeof(Statistics));
         }
+
+        public void ShowAd()
+        {
+            AdBox.Visibility = Visibility.Visible;
+        }
+
+        public void HideAd()
+        {
+            AdBox.Visibility = Visibility.Collapsed;
+        }
+
+        private void Page_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ShowAd();
+        }
     }
 }
