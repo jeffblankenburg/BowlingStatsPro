@@ -21,12 +21,12 @@ namespace BowlingLogic
 
         public bool Roll(int frame, int roll, int pins)
         {
-            switch (CurrentRoll)
+            switch (roll)
             {
                 case 1:
                     Frames[frame].Roll1 = pins;
                     Frames[frame].RollONE = pins.ToString();
-                    CurrentRoll = 2;
+                    if (frame == CurrentFrame) CurrentRoll = 2;
                     if (pins == 10)
                     {
                         if (frame != 9)
@@ -34,8 +34,8 @@ namespace BowlingLogic
                             Frames[frame].RollONE = "";
                             Frames[frame].RollTWO = "X";
                             Frames[frame].IsCompleted = true;
-                            CurrentRoll = 1;
-                            CurrentFrame++;
+                            if (frame == CurrentFrame) CurrentRoll = 1;
+                            AdvanceFrame(frame);
                         }
                         else
                         {
@@ -58,13 +58,13 @@ namespace BowlingLogic
                     if ((frame < 9) || ((!IsStrike(frame)) && (!IsSpare(frame)) && (frame == 9)))
                     {
                         Frames[frame].IsCompleted = true;
-                        CurrentFrame++;
-                        CurrentRoll = 1;
+                        if (frame == CurrentFrame) CurrentRoll = 1;
+                        AdvanceFrame(frame);
                     }
                     else
                     {
                         if ((pins == 10) && (IsStrike(frame))) Frames[frame].RollTWO = "X";
-                        CurrentRoll = 3;   
+                        if (frame == CurrentFrame) CurrentRoll = 3;   
                     }
                     break;
                 case 3:
@@ -76,12 +76,17 @@ namespace BowlingLogic
                     }
                     else if ((Frames[frame].Roll1 == 10) && (Frames[frame].Roll2 == 10) && (pins == 10)) Frames[frame].RollTHREE = "X";
                     Frames[frame].IsCompleted = true;
-                    CurrentFrame++;
+                    AdvanceFrame(frame);
                     break;
             }
 
             ScoreFrames();
             return Frames[frame].IsCompleted;
+        }
+
+        private void AdvanceFrame(int frame)
+        {
+            if (frame == CurrentFrame) CurrentFrame++;
         }
 
         public void ScoreFrames()

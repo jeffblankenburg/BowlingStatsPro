@@ -236,7 +236,7 @@ namespace BowlingScorer
                     for (int j = 0; j < 10; j++)
                     {
                         Grid GameFrame = new Grid { Width = 75, Height = 75 };
-                        GameFrame.Tapped += GameFrame_Tapped;
+                        if (j != 9) GameFrame.Tapped += GameFrame_Tapped;
                         ColumnDefinition c1 = new ColumnDefinition { Width = new GridLength(37) };
                         ColumnDefinition c2 = new ColumnDefinition { Width = new GridLength(1) };
                         ColumnDefinition c3 = new ColumnDefinition { Width = new GridLength(37) };
@@ -275,6 +275,10 @@ namespace BowlingScorer
                         TextBlock Ball2 = new TextBlock { Text = Players[i].Game.Frames[j].RollTWO, FontSize = 24, TextAlignment = TextAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
                         Grid.SetColumn(Ball2, 2);
                         GameFrame.Children.Add(Ball2);
+
+                        TextBlock FrameNumber = new TextBlock { Text = j.ToString(), Visibility = Visibility.Collapsed };
+                        GameFrame.Children.Add(FrameNumber);
+
                         //THIRD BALL FOR THE TENTH FRAME
                         if (j == 9)
                         {
@@ -288,11 +292,9 @@ namespace BowlingScorer
                         //TOTAL FOR THIS FRAME
 
                         TextBlock Total = new TextBlock { Text = Players[i].Game.Frames[j].Total, FontSize = 24, TextAlignment = TextAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
-                        TextBlock FrameNumber = new TextBlock { Text = j.ToString(), Visibility = Visibility.Collapsed };
                         Grid.SetRow(Total, 2);
                         Grid.SetColumnSpan(Total, 3);
                         if (j == 9) Grid.SetColumnSpan(Total, 5);
-                        GameFrame.Children.Add(FrameNumber);
                         GameFrame.Children.Add(Total);
                         
                         Rectangle r4 = new Rectangle { Width = 1, Height = 75, Fill = White };
@@ -351,26 +353,30 @@ namespace BowlingScorer
                 EditText1.Text = t1.Text;
                 EditText2.Text = t2.Text;
                 EditFrame = Int32.Parse(FrameNumber.Text);
-                string Place;
-                string Apostrophe = "'s ";
-                switch (EditFrame)
+
+                if (EditFrame < EditPlayer.Game.CurrentFrame)
                 {
-                    case 0:
-                        Place = "1st";
-                        break;
-                    case 1:
-                        Place = "2nd";
-                        break;
-                    case 2:
-                        Place = "3rd";
-                        break;
-                    default:
-                        Place = EditFrame.ToString() + "th";
-                        break;
+                    string Place;
+                    string Apostrophe = "'s ";
+                    switch (EditFrame)
+                    {
+                        case 0:
+                            Place = "1st";
+                            break;
+                        case 1:
+                            Place = "2nd";
+                            break;
+                        case 2:
+                            Place = "3rd";
+                            break;
+                        default:
+                            Place = EditFrame.ToString() + "th";
+                            break;
+                    }
+                    if (EditPlayer.Name.Substring(EditPlayer.Name.Length - 2, 1).ToLower() == "s") Apostrophe = "' ";
+                    EditTitle.Text = "Edit " + EditPlayer.Name + Apostrophe + Place + " Frame";
+                    EditBox.Visibility = Visibility.Visible;
                 }
-                if (EditPlayer.Name.Substring(EditPlayer.Name.Length - 2, 1).ToLower() == "s") Apostrophe = "' ";
-                EditTitle.Text = "Edit " + EditPlayer.Name + Apostrophe + Place + " Frame";
-                EditBox.Visibility = Visibility.Visible;
             }
             //EditFrameButton.Visibility = Visibility.Visible;
             //BottomBar.IsOpen = true;
@@ -385,22 +391,47 @@ namespace BowlingScorer
             Button b = sender as Button;
             int pins = Int32.Parse(b.Name.Substring(10));
             BowlingLogic.Game g = EditPlayer.Game;
-            
-            if (EditPosition == 1)
+
+            if (EditFrame == 9)
             {
-                EditPosition = 2;
-                EditText1.Text = pins.ToString();
-                EditText2.Text = String.Empty;
-                EditArrow1.Visibility = Visibility.Collapsed;
-                EditArrow2.Visibility = Visibility.Visible;
+
             }
-            else if (EditPosition == 2)
+            else
             {
-                EditText2.Text = pins.ToString();
-                g.Roll(EditFrame, 1, Int32.Parse(EditText1.Text));
-                g.Roll(EditFrame, 2, pins);
-                BuildGameBoard();
-                EditBox.Visibility = Visibility.Collapsed;
+                if (EditPosition == 1)
+                {
+                    if (pins < 10)
+                    {
+                        EditPosition = 2;
+                        ChangeEditNumberButtons(pins);
+                        EditText1.Text = pins.ToString();
+                        EditText2.Text = String.Empty;
+                        EditArrow1.Visibility = Visibility.Collapsed;
+                        EditArrow2.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        EditPosition = 1;
+                        g.Roll(EditFrame, 1, 10);
+                        BuildGameBoard();
+                        ResetEditScoringButtons();
+                        EditBox.Visibility = Visibility.Collapsed;
+                        EditArrow2.Visibility = Visibility.Collapsed;
+                        EditArrow1.Visibility = Visibility.Visible;
+                    }
+                }
+                else if (EditPosition == 2)
+                {
+                    EditPosition = 1;
+                    EditText2.Text = pins.ToString();
+                    g.Roll(EditFrame, 1, Int32.Parse(EditText1.Text));
+                    g.Roll(EditFrame, 2, pins);
+                    BuildGameBoard();
+                    ResetEditScoringButtons();
+                    EditBox.Visibility = Visibility.Collapsed;
+                    EditArrow2.Visibility = Visibility.Collapsed;
+                    EditArrow1.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -572,7 +603,7 @@ namespace BowlingScorer
             Button b = sender as Button;
             int pins = Int32.Parse(b.Name.Substring(6));
             BowlingLogic.Game g = Players[CurrentPlayer].Game;
-            if (g.Roll(g.CurrentFrame, CurrentRoll, pins))
+            if (g.Roll(g.CurrentFrame, g.CurrentRoll, pins))
             {
                 CurrentPlayer++;
                 ResetScoringButtons();
@@ -710,6 +741,18 @@ namespace BowlingScorer
             }
 
             Button10.Content = "x";
+        }
+
+        private void ResetEditScoringButtons()
+        {
+            for (int i = 0; i <= 10; i++)
+            {
+                Button b = FindName("EditButton" + i) as Button;
+                b.Visibility = Visibility.Visible;
+                b.Content = i.ToString();
+            }
+
+            EditButton10.Content = "x";
         }
 
         private void ExistingPlayerName_Tapped(object sender, TappedRoutedEventArgs e)
