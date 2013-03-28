@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -11,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -45,7 +47,7 @@ namespace BowlingScorer
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ResizeBoard();
-            CircleAnimation.Begin();
+            //CircleAnimation.Begin();
         }
 
         private void ResizeBoard()
@@ -91,6 +93,18 @@ namespace BowlingScorer
         private void Page_GotFocus(object sender, RoutedEventArgs e)
         {
             ShowAd();
+        }
+
+        private void Ellipse_PointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            Ellipse circle = sender as Ellipse;
+            circle.Fill = new SolidColorBrush(Color.FromArgb(0x22, 0xFF, 0xFF, 0xFF));
+        }
+
+        private void Ellipse_PointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            Ellipse circle = sender as Ellipse;
+            circle.Fill = new SolidColorBrush(Color.FromArgb(0x00, 0xFF, 0xFF, 0xFF));
         }
     }
 }

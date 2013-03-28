@@ -62,9 +62,9 @@
             <local:BowlingPinIcon Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <local:PersonIcon Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <local:StatisticsIcon Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Ellipse x:Name="NewGameButton" Grid.Row="1" Grid.Column="0" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="NewGameButton_Tapped" />
-            <Ellipse x:Name="ManagePeopleButton" Grid.Row="1" Grid.Column="1" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="ManagePeople_Tapped" />
-            <Ellipse x:Name="StatisticsButton" Grid.Row="1" Grid.Column="2" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="StatisticsButton_Tapped" />
+            <Ellipse x:Name="NewGameButton" Grid.Row="1" Grid.Column="0" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="NewGameButton_Tapped" PointerEntered="Ellipse_PointerEntered" PointerExited="Ellipse_PointerExited" />
+            <Ellipse x:Name="ManagePeopleButton" Grid.Row="1" Grid.Column="1" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="ManagePeople_Tapped" PointerEntered="Ellipse_PointerEntered" PointerExited="Ellipse_PointerExited" />
+            <Ellipse x:Name="StatisticsButton" Grid.Row="1" Grid.Column="2" Fill="Transparent" Stroke="White" StrokeThickness="5" Margin="20" Tapped="StatisticsButton_Tapped" PointerEntered="Ellipse_PointerEntered" PointerExited="Ellipse_PointerExited" />
             <UI:AdControl x:Name="AdBox"  Grid.Row="2" Grid.ColumnSpan="3" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
         </Grid>
     </Grid>

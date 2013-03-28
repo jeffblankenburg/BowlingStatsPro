@@ -24,17 +24,6 @@
             </Grid.RowDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" Style="{StaticResource PageHeaderTextStyle}"/>
-            <!--<Grid x:Name="IntroText" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="65" />
-                </Grid.RowDefinitions>
-                <Button x:Name="FakeAddPlayerButton" Style="{StaticResource AddAppBarButtonStyle}" AutomationProperties.Name="" Click="FakeAddButton_Click" Margin="-20,0,-20,0" />
-                <TextBlock Grid.Column="1" Text="Add a player to start a game" FontSize="24" VerticalAlignment="Center" Margin="10,0,0,0" />
-            </Grid>-->
             <Grid x:Name="GameGridContainer" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -88,6 +77,59 @@
         <Grid x:Name="SnappedViewCover" Background="{StaticResource ApplicationPageBackgroundThemeBrush}" Grid.ColumnSpan="100" Grid.RowSpan="100" Visibility="Collapsed">
             <Image Source="Assets/WideLogo.png" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
+        <Grid x:Name="EditBox" Grid.ColumnSpan="2" Grid.RowSpan="3" Visibility="Collapsed">
+            <Rectangle Fill="Black" Opacity=".9" Tapped="EditBox_Close"/>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock x:Name="EditTitle" Text="Edit Jeff's 4th Frame" FontSize="60" TextAlignment="Center" HorizontalAlignment="Center" FontFamily="Assets/fonts/AIRSTREA.TTF#Airstream" />
+                <Border BorderBrush="White" BorderThickness="3" Width="400" Height="400">
+                    <Grid Background="Black">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="White" BorderThickness="3,0,0,3" Grid.Column="1" />
+                        <TextBlock x:Name="EditText1" Text="4" FontSize="100" TextAlignment="Center" VerticalAlignment="Center" Tapped="EditText1_Tapped" />
+                        <TextBlock x:Name="EditText2" Text="/" Grid.Column="1" FontSize="100" TextAlignment="Center" VerticalAlignment="Center" Tapped="EditText2_Tapped" />
+                        <Image x:Name="EditArrow1" Grid.Row="1" Margin="40" Source="Assets/ArrowN.png" />
+                        <Image x:Name="EditArrow2" Grid.Row="1" Grid.Column="1" Margin="40" Source="Assets/ArrowN.png" Visibility="Collapsed" />
+                    </Grid>
+                </Border>
+                <Grid x:Name="EditScoringButtons" Margin="0,20,0,0" HorizontalAlignment="Center" Visibility="Visible">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                        <ColumnDefinition Width="85" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                    </Grid.RowDefinitions>
+                    <Button x:Name="EditButton0" Content="0" Grid.Column="0" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click"  />
+                    <Button x:Name="EditButton1" Content="1" Grid.Column="1" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton2" Content="2" Grid.Column="2" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton3" Content="3" Grid.Column="3" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton4" Content="4" Grid.Column="4" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton5" Content="5" Grid.Column="5" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton6" Content="6" Grid.Column="6" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton7" Content="7" Grid.Column="7" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton8" Content="8" Grid.Column="8" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton9" Content="9" Grid.Column="9" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                    <Button x:Name="EditButton10" Content="x" Grid.Column="10" Height="75" Width="85" FontSize="60" FontFamily="Assets/fonts/AHRONBD.TTF#Aharoni" Click="EditNumberButton_Click" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+        
     </Grid>
     <Page.BottomAppBar>
         <AppBar x:Name="BottomBar">
