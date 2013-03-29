@@ -416,6 +416,7 @@ namespace BowlingScorer
                         BuildGameBoard();
                         ResetEditScoringButtons();
                         EditBox.Visibility = Visibility.Collapsed;
+                        AdBox.Resume();
                         EditArrow2.Visibility = Visibility.Collapsed;
                         EditArrow1.Visibility = Visibility.Visible;
                     }
@@ -779,6 +780,7 @@ namespace BowlingScorer
         private void EditBox_Close(object sender, TappedRoutedEventArgs e)
         {
             EditBox.Visibility = Visibility.Collapsed;
+            AdBox.Resume();
         }
 
         private void EditText1_Tapped(object sender, TappedRoutedEventArgs e)
