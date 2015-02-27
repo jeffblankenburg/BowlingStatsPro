@@ -103,10 +103,11 @@ namespace BowlingLogic
                         {
                             if ((i + 1) == 9)
                             {
-                                if ((CurrentFrame >= 9) && (CurrentRoll == 3))
-                                {
+                                //if ((CurrentFrame >= 9) && (CurrentRoll == 3))
+                                //{
                                     Frames[i].Total = (score + (10 + Frames[i + 1].Roll1 + Frames[i + 1].Roll2)).ToString();
-                                }
+                                //}
+                                
                             }
                             else if (!Frames[i + 1].IsCompleted)
                             {

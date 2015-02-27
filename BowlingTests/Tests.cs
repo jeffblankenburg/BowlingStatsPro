@@ -175,6 +175,31 @@ namespace BowlingTests
             Assert.AreEqual(300, p.Game.CalculateTotalScore());
         }
 
+        [TestMethod]
+        public void AllGutterBallsButStrikeInTheNinth()
+        {
+            p.Game.Roll(0, 0, 0);
+            p.Game.Roll(0, 1, 0);
+            p.Game.Roll(1, 1, 0);
+            p.Game.Roll(1, 2, 0);
+            p.Game.Roll(2, 1, 0);
+            p.Game.Roll(2, 2, 0);
+            p.Game.Roll(3, 1, 0);
+            p.Game.Roll(3, 2, 0);
+            p.Game.Roll(4, 1, 0);
+            p.Game.Roll(4, 2, 0);
+            p.Game.Roll(5, 1, 0);
+            p.Game.Roll(5, 2, 0);
+            p.Game.Roll(6, 1, 0);
+            p.Game.Roll(6, 2, 0);
+            p.Game.Roll(7, 1, 0);
+            p.Game.Roll(7, 2, 0);
+            p.Game.Roll(8, 1, 10);
+            p.Game.Roll(9, 1, 0);
+            p.Game.Roll(9, 2, 0);
+            Assert.AreEqual(10, p.Game.CalculateTotalScore());
+        }
+
         //[TestMethod]
         //public void CurrentFrameCheck()
         //{

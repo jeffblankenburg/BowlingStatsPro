@@ -36,12 +36,12 @@ namespace BowlingScorer
             double w = Windows.UI.Xaml.Window.Current.Bounds.Width;
             if (w == 320)
             {
-                AdBox.Visibility = Visibility.Collapsed;
+                //AdBox.Visibility = Visibility.Collapsed;
                 SnappedViewCover.Visibility = Visibility.Visible;
             }
             else
             {
-                AdBox.Visibility = Visibility.Visible;
+               // AdBox.Visibility = Visibility.Visible;
                 SnappedViewCover.Visibility = Visibility.Collapsed;
             }
         }
@@ -156,12 +156,12 @@ namespace BowlingScorer
 
         public void ShowAd()
         {
-            AdBox.Visibility = Visibility.Visible;
+            //AdBox.Visibility = Visibility.Visible;
         }
 
         public void HideAd()
         {
-            AdBox.Visibility = Visibility.Collapsed;
+            //AdBox.Visibility = Visibility.Collapsed;
         }
     }
 }

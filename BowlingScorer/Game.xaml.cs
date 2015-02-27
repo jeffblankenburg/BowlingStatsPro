@@ -127,12 +127,12 @@ namespace BowlingScorer
             double w = Windows.UI.Xaml.Window.Current.Bounds.Width;
             if (w == 320)
             {
-                AdBox.Visibility = Visibility.Collapsed;
+                //AdBox.Visibility = Visibility.Collapsed;
                 SnappedViewCover.Visibility = Visibility.Visible;
             }
             else
             {
-                AdBox.Visibility = Visibility.Visible;
+                //AdBox.Visibility = Visibility.Visible;
                 SnappedViewCover.Visibility = Visibility.Collapsed;
                 ResizeBoard();
             }
@@ -344,7 +344,7 @@ namespace BowlingScorer
             if (!IsGameEnded)
             {
                 EditPosition = 1;
-                AdBox.Suspend();
+                //AdBox.Suspend();
                 Grid g = sender as Grid;
                 EditPlayer = g.DataContext as Player;
                 TextBlock t1 = g.Children[2] as TextBlock;
@@ -416,7 +416,7 @@ namespace BowlingScorer
                         BuildGameBoard();
                         ResetEditScoringButtons();
                         EditBox.Visibility = Visibility.Collapsed;
-                        AdBox.Resume();
+                       // AdBox.Resume();
                         EditArrow2.Visibility = Visibility.Collapsed;
                         EditArrow1.Visibility = Visibility.Visible;
                     }
@@ -496,12 +496,12 @@ namespace BowlingScorer
         private void ShowScoringButtons()
         {
             ScoringButtons.Visibility = Visibility.Visible;
-            AdBox.Visibility = Visibility.Visible;
+            //AdBox.Visibility = Visibility.Visible;
         }
 
         private void HideScoringButtons()
         {
-            AdBox.Visibility = Visibility.Collapsed;
+           // AdBox.Visibility = Visibility.Collapsed;
             ScoringButtons.Visibility = Visibility.Collapsed;
         }
 
@@ -769,18 +769,18 @@ namespace BowlingScorer
 
         public void ShowAd()
         {
-            AdBox.Visibility = Visibility.Visible;
+            //AdBox.Visibility = Visibility.Visible;
         }
 
         public void HideAd()
         {
-            AdBox.Visibility = Visibility.Collapsed;
+            //AdBox.Visibility = Visibility.Collapsed;
         }
 
         private void EditBox_Close(object sender, TappedRoutedEventArgs e)
         {
             EditBox.Visibility = Visibility.Collapsed;
-            AdBox.Resume();
+            //AdBox.Resume();
         }
 
         private void EditText1_Tapped(object sender, TappedRoutedEventArgs e)

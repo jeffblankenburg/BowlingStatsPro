@@ -82,12 +82,12 @@ namespace BowlingScorer
 
         public void ShowAd()
         {
-            AdBox.Visibility = Visibility.Visible;
+            //AdBox.Visibility = Visibility.Visible;
         }
 
         public void HideAd()
         {
-            AdBox.Visibility = Visibility.Collapsed;
+            //AdBox.Visibility = Visibility.Collapsed;
         }
 
         private void Page_GotFocus(object sender, RoutedEventArgs e)

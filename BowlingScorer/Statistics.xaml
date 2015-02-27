@@ -5,7 +5,6 @@
     xmlns:local="using:BowlingScorer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -26,7 +25,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
-        <UI:AdControl x:Name="AdBox" Grid.Row="2" HorizontalAlignment="Center" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" />
+        <!--<UI:AdControl x:Name="AdBox" Grid.Row="2" HorizontalAlignment="Center" ApplicationId="ced5ff99-aae3-4558-91bb-d761ad0f62db" AdUnitId="10063406" Width="728" Height="90" />-->
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
